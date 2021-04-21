@@ -5,7 +5,7 @@ import Search from '../../components/Search/Search'
 import axios from 'axios'
 import Pagination from '../../components/Paginations/Pagination'
 import CardVehicle from '../../components/Card/CardVehicle'
-import { Alert } from '@material-ui/lab'
+import { Alert } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     header: {
