@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import { Container, makeStyles } from '@material-ui/core'
 
 import Form from '../../components/Form/CreateVehicle'
-import { Alert } from '@material-ui/lab';
 import axios from 'axios'
 
 const useStyles = makeStyles(() => ({
@@ -34,13 +33,6 @@ export default function New(props) {
         message: ''
     })
 
-    const closeAlert = () => {
-        setAlert({
-            show: false,
-            message: ''
-        })
-    }
-
     const handleChange = (e) => {
         const { name, value } = e.target
         setData({
@@ -56,6 +48,12 @@ export default function New(props) {
                 show: true,
                 message: 'Por favor llena correctamente el formulario'
             })
+            setTimeout(() => {
+                setAlert({
+                    show: false,
+                    message: ''
+                })
+            }, 3500)
             return
         }
         const res = await axios.post(uri + '/api/vehiculo', data)
@@ -75,14 +73,9 @@ export default function New(props) {
             <div>
                 {
                     alert.show ? (
-                        <Alert
-                            color="error"
-                            variant="standard"
-                            className={classes.alert}
-                            onClose={closeAlert}
-                        >
+                        <div className="alert alert-danger alert-dismissible fade show" role="alert">
                             {alert.message}
-                        </Alert>
+                        </div>
                     ) : <></>
                 }
                 <Form

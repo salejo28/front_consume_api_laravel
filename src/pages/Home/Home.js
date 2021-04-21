@@ -5,7 +5,6 @@ import Search from '../../components/Search/Search'
 import axios from 'axios'
 import Pagination from '../../components/Paginations/Pagination'
 import CardVehicle from '../../components/Card/CardVehicle'
-import { Alert } from '@material-ui/core'
 
 const useStyles = makeStyles(() => ({
     header: {
@@ -41,13 +40,6 @@ export default function Home() {
         loadTotalBrand()
     }, [])
 
-    const onClose = () => {
-        setAlert({
-            show: false,
-            message: ''
-        })
-    }
-
     const handleClick = () => {
         setShowTotal(!showTotal)
     }
@@ -65,6 +57,12 @@ export default function Home() {
                 show: true,
                 message: res.data.Message
             })
+            setTimeout(() => {
+                setAlert({
+                    show: false,
+                    message: ''
+                })
+            }, 3500)
             return
         }
         setIsSearch(true);
@@ -101,12 +99,9 @@ export default function Home() {
         <Container maxWidth="sm">
             {
                 alert.show ? (
-                    <Alert
-                        color="warning"
-                        onClose={onClose}
-                    >
+                    <div className="alert alert-warning alert-dismissible fade show" role="alert">
                         {alert.message}
-                    </Alert>
+                    </div>
                 ) : <></>
             }
             <div className={classes.header}>
