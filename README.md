@@ -25,3 +25,7 @@ npm install
 npm start
 ```
 Configura las variables de entorno con la URL de la api https://infinite-depths-76563.herokuapp.com
+
+## Dependencias
+material-ui/core
+bootstrap
